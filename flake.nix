@@ -1,7 +1,7 @@
 {
   outputs = { self }: {
     overlays.default = themeLoc: selfPkgs: superPkgs: {
-      gnome = selfPkgs // {
+      gnome = superPkgs // {
         gnome-shell = superPkgs.gnome.gnome-shell.overrideAttrs (selfAttrs: superAttrs: {
           buildInputs = superAttrs.buildInputs ++ [ selfPkgs.breakpointHook ];
           postBuild = superAttrs.postBuild or "" + ''
