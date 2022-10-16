@@ -5,9 +5,9 @@
         gnome-shell = superPkgs.gnome.gnome-shell.overrideAttrs (selfAttrs: superAttrs: {
           pname = "themed-gnome-shell";
           buildInputs = superAttrs.buildInputs ++ [ selfPkgs.breakpointHook ];
-          postBuild = superAttrs.postBuild or "" + ''
-            rm data/gnome-shell-theme.gresource
-            cp ${themeLoc} data/gnome-shell-theme.gresource
+          postInstall = superAttrs.postInstall or "" + ''
+            rm $out/share/gnome-shell/gnome-shell-theme.gresource
+            cp ${themeLoc} $out/share/gnome-shell/gnome-shell-theme.gresource
           '';
         });
       };
